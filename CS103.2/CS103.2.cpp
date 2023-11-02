@@ -7,5 +7,4 @@
 int main()
 {
     mainMenu();
-    jsonDataFile();
 }
