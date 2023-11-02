@@ -129,6 +129,13 @@
   <ItemGroup>
     <ClCompile Include="CS103.2.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fileManagementFunctions.h" />
+    <ClInclude Include="menuFunctions.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Customer_registration.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

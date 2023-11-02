@@ -1,0 +1,17 @@
+{
+  "userData": [
+    {
+      "password": "123",
+      "userName": "Teddy123",
+      "firstName": "Ted",
+      "lastName": "Mincham",
+      "DOB": "01/12/1998",
+      "contactNumber": "0221344099",
+      "gender": "Male",
+      "email": "tedmincham@gmail.com",
+      "address": "106 Marina View Drive",
+      "vehicleRego": "EGF647",
+      "isAdmin": true
+    }
+  ]
+}
