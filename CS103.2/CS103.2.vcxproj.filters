@@ -26,6 +26,9 @@
     <ClInclude Include="fileManagementFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="verificationFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Customer_registration.json">

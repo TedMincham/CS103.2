@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fileManagementFunctions.h" />
+    <ClInclude Include="verificationFunctions.h" />
     <ClInclude Include="menuFunctions.h" />
   </ItemGroup>
   <ItemGroup>

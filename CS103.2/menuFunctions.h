@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <string>
 #include "fileManagementFunctions.h"
+#include "verificationFunctions.h"
 
 void login()
 {
@@ -70,6 +71,7 @@ void signUp()
 
     std::cout << "Sign up successful" << std::endl;
     addNewUser(newuser);
+    //createData();
 }
 
 void mainMenu()
@@ -83,19 +85,30 @@ void mainMenu()
     std::cout << std::setw(13) << "3. Exit" << std::endl;
 
     std::cin >> userInput;
-
-    if (userInput == 1)
+    if (validNumber(1, 3, userInput))
     {
-        system("cls");
-        login();
-    }
-    else if (userInput == 2)
-    {
-        system("cls");
-        signUp();
+        if (userInput == 1)
+        {
+            system("cls");
+            login();
+        }
+        else if (userInput == 2)
+        {
+            system("cls");
+            signUp();
+        }
+        else
+        {
+            exit(0);
+        }
     }
     else
     {
-        exit(0);
+        std::cout << "Incorrect input..." << std::endl;
+        Sleep(500);
+        system("cls");
+        mainMenu();
     }
+
+
 }

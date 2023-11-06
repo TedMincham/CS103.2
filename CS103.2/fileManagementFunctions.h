@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <map>
 #include "json.hpp"
 
 extern struct userData
@@ -13,7 +14,7 @@ extern struct userData
 nlohmann::json jsonDataFile()
 {
 	std::ifstream f("./Customer_registration.json");
-	nlohmann::json userDataJson = nlohmann::json::parse(f)["userData"];
+	nlohmann::json userDataJson = nlohmann::json::parse(f);
     f.close();
 	return userDataJson;
 }
@@ -23,17 +24,17 @@ void addNewUser(const userData& newUser)
     nlohmann::json data = jsonDataFile();
 
     nlohmann::json newUserJson;
-    newUserJson["password"] = newUser.password;
-    newUserJson["userName"] = newUser.userName;
-    newUserJson["firstName"] = newUser.firstName;
-    newUserJson["lastName"] = newUser.lastName;
-    newUserJson["DOB"] = newUser.DOB;
-    newUserJson["contactNumber"] = newUser.contactNumber;
-    newUserJson["gender"] = newUser.gender;
-    newUserJson["email"] = newUser.email;
-    newUserJson["address"] = newUser.address;
-    newUserJson["vehicleRego"] = newUser.vehicleRego;
-    newUserJson["isAdmin"] = newUser.isAdmin;
+    newUserJson[newUser.userName]["password"] = newUser.password;
+    newUserJson[newUser.userName]["userName"] = newUser.userName;
+    newUserJson[newUser.userName]["firstName"] = newUser.firstName;
+    newUserJson[newUser.userName]["lastName"] = newUser.lastName;
+    newUserJson[newUser.userName]["DOB"] = newUser.DOB;
+    newUserJson[newUser.userName]["contactNumber"] = newUser.contactNumber;
+    newUserJson[newUser.userName]["gender"] = newUser.gender;
+    newUserJson[newUser.userName]["email"] = newUser.email;
+    newUserJson[newUser.userName]["address"] = newUser.address;
+    newUserJson[newUser.userName]["vehicleRego"] = newUser.vehicleRego;
+    newUserJson[newUser.userName]["isAdmin"] = newUser.isAdmin;
 
     data.push_back(newUserJson);
 
@@ -42,13 +43,13 @@ void addNewUser(const userData& newUser)
     outFile.close();
 }
 
-void createData()
+std::map<std::string,userData> createData()
 {
 	nlohmann::json data = jsonDataFile();
-    std::vector<userData> users;
+    std::map<std::string,userData> usersData;
 
     for (const auto& userDataJson : data)
-    {
+    {     
         userData user;
         user.password = userDataJson["password"];
         user.userName = userDataJson["userName"];
@@ -61,8 +62,6 @@ void createData()
         user.address = userDataJson["address"];
         user.vehicleRego = userDataJson["vehicleRego"];
         user.isAdmin = userDataJson["isAdmin"];
-        users.push_back(user);
-
         /*std::cout << "User Data:" << std::endl;
         std::cout << "Password: " << user.password << std::endl;
         std::cout << "User Name: " << user.userName << std::endl;
@@ -77,6 +76,6 @@ void createData()
         std::cout << "Is Admin: " << user.isAdmin << std::endl;
         std::cout << std::endl;*/
     }
-
+    return usersData;
 }
 

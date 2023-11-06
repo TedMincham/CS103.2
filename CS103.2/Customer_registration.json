@@ -1,15 +1,17 @@
 [
     {
-        "DOB": "01/12/1998",
-        "address": "106 Marina View Drive",
-        "contactNumber": "0221344099",
-        "email": "tedmincham@gmail.com",
-        "firstName": "Ted",
-        "gender": "Male",
-        "isAdmin": true,
-        "lastName": "Mincham",
-        "password": "123",
-        "userName": "Teddy123",
-        "vehicleRego": "EGF647"
+        "1": {
+            "DOB": "1",
+            "address": "1",
+            "contactNumber": "1",
+            "email": "1",
+            "firstName": "1",
+            "gender": "Male",
+            "isAdmin": false,
+            "lastName": "1",
+            "password": "1",
+            "userName": "1",
+            "vehicleRego": "1"
+        }
     }
 ]
