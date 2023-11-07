@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include "fileManagementFunctions.h"
+#include "json.hpp"
 
 
 bool validEmail()
@@ -11,29 +13,48 @@ bool validEmail()
 	return valid;
 }
 
-bool validNumber(int one, int two, int userInput)
-{
-	bool valid;
 
+bool validNumber(char one, char two, char userInput)
+{
+	bool valid = false;
+
+	int userNum = (int)userInput - '0';
+	int numOne = (int)one - '0';
+	int numTwo = (int)two - '0';
+
+	
 	if (isdigit(userInput))
 	{
-		if (userInput <= two && userInput > one)
+		if (userNum >= numOne  && userNum  <= numTwo)
 		{
 			valid = true;
-		}
-		else
+		}		
+	}
+	return valid;
+}
+
+bool validateLogin(std::string userName, std::string passWord)
+{
+	bool valid = false;
+
+	bool validUser;
+
+	nlohmann::json data = jsonDataFile();
+	validUser = data.contains(userName);
+
+	if (validUser)
+	{
+		if (data[userName]["password"] == passWord)
 		{
-			valid = false;
-			std::cout << "This is not a valid input" << std::endl;
+			std::cout << "Login sucessful" << std::endl;
+			valid = true;
 		}
 	}
 	else
 	{
-		userInput = 100;
+		std::cout << "This user does not exist" << std::endl;
 		valid = false;
 	}
-
-
-
+		
 	return valid;
 }
