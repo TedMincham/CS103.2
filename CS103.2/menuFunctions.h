@@ -10,12 +10,17 @@
 void mainMenu();
 void login();
 void signUp();
+void customerScreen();
+
+std::string currentUser;
+
+int loginAttempts = 3;
 
 void login()
 {
 
     std::string userName,passWord;
-    int loginAttempts = 3;
+    
 
     std::cout << "Enter your username" << std::endl;
     std::cin.ignore();
@@ -27,7 +32,10 @@ void login()
     if (validateLogin(userName,passWord))
     {
         std::cout << "Sign in sucessful" << std::endl;
+        currentUser = userName;
         Sleep(1000);
+        system("cls");
+        customerScreen();
     }
     else if (loginAttempts == 0)
     {
@@ -104,7 +112,7 @@ void signUp()
 
     std::cout << "Sign up successful" << std::endl;
     addNewUser(newuser);
-    //createData();
+    mainMenu();
 }
 
 void mainMenu()
@@ -118,6 +126,7 @@ void mainMenu()
     std::cout << std::setw(13) << "3. Exit" << std::endl;
 
     std::cin >> userInput;
+
     if (validNumber('1', '3', userInput))
     {
         if (userInput == '1')
@@ -142,4 +151,47 @@ void mainMenu()
         system("cls");
         mainMenu();
     }
+}
+
+void customerScreen()
+{
+    nlohmann::json userInfo = jsonDataFile();
+    char userInput;
+
+    std::cout << "Welcome " << userInfo[currentUser]["userName"] << std::endl;
+    std::cout << "1. Policy and Insurance Application" << std::endl;
+    std::cout << "2. Make a Claim" << std::endl;
+    std::cout << "3. Renewal" << std::endl;
+    std::cout << "4. Benefits of NZ insurance" << std::endl;
+    std::cout << "5. Sign Out" << std::endl;
+    
+    std::cin >> userInput;
+
+    if (validNumber('1', '5', userInput))
+    {
+        switch (userInput) {
+        case '1':
+            return;
+        case '2':
+            return;
+        case '3':
+            return;
+        case '4':
+            return;
+        case '5':
+            std::cout << "Signing out....." << std::endl;
+            Sleep(500);
+            system("cls");
+            mainMenu();
+            return;
+        }
+    }
+    else
+    {
+        std::cout << "Incorrect input...." << std::endl;
+        Sleep(500);
+        system("cls");
+        customerScreen();
+    }
+
 }

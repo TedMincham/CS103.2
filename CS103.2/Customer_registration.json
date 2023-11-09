@@ -11,5 +11,18 @@
         "password": "1",
         "userName": "1",
         "vehicleRego": "1"
+    },
+    "Ted": {
+        "DOB": "01/12/23",
+        "address": "106 Marina View Drive",
+        "contactNumber": "0221344099",
+        "email": "tedmincham@gmail.com",
+        "firstName": "Ted",
+        "gender": "Male",
+        "isAdmin": false,
+        "lastName": "Mincham",
+        "password": "123",
+        "userName": "Ted",
+        "vehicleRego": "EGF647"
     }
 }

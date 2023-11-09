@@ -33,6 +33,7 @@ bool validNumber(char one, char two, char userInput)
 	return valid;
 }
 
+
 bool validateLogin(std::string userName, std::string passWord)
 {
 	bool valid = false;
