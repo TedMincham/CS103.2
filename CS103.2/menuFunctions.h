@@ -112,7 +112,7 @@ void signUp()
 
     std::cout << "Sign up successful" << std::endl;
     addNewUser(newuser);
-    mainMenu();
+    mainMenu();   
 }
 
 void mainMenu()
