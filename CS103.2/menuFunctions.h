@@ -41,7 +41,9 @@ void login()
     {
         std::cout << "Failed to login too many times, please try again later";
         Sleep(2000);
-        exit(0);
+        system("cls");
+        loginAttempts = 3;
+        mainMenu();
     }
     else
     {
@@ -98,7 +100,18 @@ void signUp()
 
     std::cout << "Enter your email" << std::endl;
     std::getline(std::cin, userInput);
-    newuser.email = userInput;
+    if (validEmail(userInput))
+    {
+        newuser.email = userInput;
+    }
+    else
+    {
+        std::cout << "Thie is not a valid email" << std::endl;
+        
+        // need to turn this code into a dowhile loop? Maybe
+
+    }
+    
 
     std::cout << "Enter your address" << std::endl;
     std::getline(std::cin, userInput);
@@ -139,7 +152,7 @@ void mainMenu()
             system("cls");
             signUp();
         }
-        else
+        else if (userInput == '3')
         {
             exit(0);
         }
@@ -164,10 +177,14 @@ void customerScreen()
     std::cout << "3. Renewal" << std::endl;
     std::cout << "4. Benefits of NZ insurance" << std::endl;
     std::cout << "5. Sign Out" << std::endl;
+    if (userInfo[currentUser]["isAdmin"] == true)
+    {
+        std::cout << "6. Admin Menu" << std::endl;
+    }
     
     std::cin >> userInput;
 
-    if (validNumber('1', '5', userInput))
+    if (validNumber('1', '6', userInput))
     {
         switch (userInput) {
         case '1':
@@ -184,7 +201,20 @@ void customerScreen()
             system("cls");
             mainMenu();
             return;
+        case '6':
+            if (userInfo[currentUser]["isAdmin"] == true)
+            {
+
+            }
+            else
+            {
+                std::cout << "Incorrect input...." << std::endl;
+                Sleep(500);
+                system("cls");
+                customerScreen();
+            }
         }
+        
     }
     else
     {
@@ -194,4 +224,4 @@ void customerScreen()
         customerScreen();
     }
 
-}
+} 

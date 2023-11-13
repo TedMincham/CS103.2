@@ -19,7 +19,7 @@
         "email": "tedmincham@gmail.com",
         "firstName": "Ted",
         "gender": "Male",
-        "isAdmin": false,
+        "isAdmin": true,
         "lastName": "Mincham",
         "password": "123",
         "userName": "Ted",

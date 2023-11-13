@@ -6,10 +6,18 @@
 #include "json.hpp"
 
 
-bool validEmail()
+bool validEmail(std::string userEmail)
 {
 	bool valid;
-	valid = false;
+
+	if (userEmail.find('@') != std::string::npos)
+	{
+		valid = true;
+	}
+	else
+	{
+		valid = false;
+	}
 	return valid;
 }
 
@@ -28,7 +36,7 @@ bool validNumber(char one, char two, char userInput)
 		if (userNum >= numOne  && userNum  <= numTwo)
 		{
 			valid = true;
-		}		
+		}	
 	}
 	return valid;
 }
@@ -53,7 +61,7 @@ bool validateLogin(std::string userName, std::string passWord)
 	}
 	else
 	{
-		std::cout << "This user does not exist" << std::endl;
+		std::cout << "Invalid Username or Password" << std::endl;
 		valid = false;
 	}
 		
