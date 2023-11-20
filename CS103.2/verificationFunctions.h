@@ -5,6 +5,15 @@
 #include "fileManagementFunctions.h"
 #include "json.hpp"
 
+int randomPolicyNumber()
+{
+	srand((unsigned)time(NULL));
+
+	int num = 1000 + (rand() % 50000);
+
+	return num;
+}
+
 
 bool validEmail(std::string userEmail)
 {
@@ -49,13 +58,12 @@ bool validateLogin(std::string userName, std::string passWord)
 	bool validUser;
 
 	nlohmann::json data = jsonDataFile();
-	validUser = data.contains(userName);
+	validUser = data["user"].contains(userName);
 
 	if (validUser)
 	{
-		if (data[userName]["password"] == passWord)
+		if (data["user"][userName]["password"] == passWord)
 		{
-			std::cout << "Login sucessful" << std::endl;
 			valid = true;
 		}
 	}

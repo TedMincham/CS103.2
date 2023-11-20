@@ -1,28 +1,62 @@
 {
-    "1": {
-        "DOB": "1",
-        "address": "1",
-        "contactNumber": "1",
-        "email": "1",
-        "firstName": "1",
-        "gender": "Male",
-        "isAdmin": false,
-        "lastName": "1",
-        "password": "1",
-        "userName": "1",
-        "vehicleRego": "1"
+    "discount": {
+        "FriendsAndFamily": 15,
+        "MultiPolicy": 20,
+        "NewSignUp": 10,
+        "Renewal": 8
     },
-    "Ted": {
-        "DOB": "01/12/23",
-        "address": "106 Marina View Drive",
-        "contactNumber": "0221344099",
-        "email": "tedmincham@gmail.com",
-        "firstName": "Ted",
-        "gender": "Male",
-        "isAdmin": true,
-        "lastName": "Mincham",
-        "password": "123",
-        "userName": "Ted",
-        "vehicleRego": "EGF647"
+    "user": {
+        "1": {
+            "DOB": "1",
+            "address": "1",
+            "contactNumber": "1",
+            "email": "1@1",
+            "firstName": "1",
+            "gender": "Male",
+            "isAdmin": false,
+            "lastName": "1",
+            "password": "1",
+            "userName": "1",
+            "vehicleRego": "1"
+        },
+        "2": {
+            "DOB": "2",
+            "address": "106 marina view drive",
+            "contactNumber": "2",
+            "email": "2@2",
+            "firstName": "2",
+            "gender": "Female",
+            "isAdmin": false,
+            "lastName": "2",
+            "password": "2",
+            "userName": "2",
+            "vehicleRego": "egf647"
+        },
+        "3": {
+            "DOB": "3",
+            "address": "3",
+            "contactNumber": "3",
+            "email": "3@3",
+            "firstName": "3",
+            "gender": "Female",
+            "isAdmin": false,
+            "lastName": "3",
+            "password": "3",
+            "userName": "3",
+            "vehicleRego": "3"
+        },
+        "Teddy": {
+            "DOB": "01/12/98",
+            "address": "106 Marina View Drive",
+            "contactNumber": "0221344099",
+            "email": "tedmincham@gmail.com",
+            "firstName": "Ted",
+            "gender": "Male",
+            "isAdmin": true,
+            "lastName": "Mincham",
+            "password": "123",
+            "userName": "Teddy",
+            "vehicleRego": "EGF647"
+        }
     }
 }
