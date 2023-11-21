@@ -1,5 +1,6 @@
 #pragma once
 
+#include <climits>
 #include <iostream>
 #include <iomanip>
 #include <Windows.h>
@@ -113,7 +114,6 @@ void signUp()
             std::cout << "Thie is not a valid email" << std::endl;
             Sleep(1000);
             system("cls");
-            // need to turn this code into a dowhile loop? Maybe
 
         }
     } while (!validEmail(userInput));
@@ -181,35 +181,68 @@ void registerPolicy()
 {
     policyData newuser;
     char userInput;
+    std::string userInputS;
 
-    std::cout << "Thanks for choosing NZ Insurance for your new policy" << std::endl;
-    std::cout << "Press 1. to register Third Party insurance" << std::endl;
-    std::cout << "Press 2. to register Fire and Theft insurance" << std::endl;
-    std::cout << "Press 3. to register Comprehensive insurance" << std::endl;
-    std::cout << "Press 4. to return to the customer screen" << std::endl;
+    do {
+        std::cout << "Thanks for choosing NZ Insurance for your new policy" << std::endl;
+        std::cout << "Press 1. to register Third Party insurance" << std::endl;
+        std::cout << "Press 2. to register Fire and Theft insurance" << std::endl;
+        std::cout << "Press 3. to register Comprehensive insurance" << std::endl;
+        std::cout << "Press 4. to return to the customer screen" << std::endl;
 
-    std::cin >> userInput;
+        std::cin >> userInput;
 
-    switch (userInput)
-    {
-    case '1':
-        newuser.insuranceType = "Third Party";
-        return;
-    case '2':
-        newuser.insuranceType = "Fire and Theft";
-        return;
-    case '3':
-        newuser.insuranceType = "Comprehensive";
-        return;
-    case '4':
-        Sleep(500);
-        system("cls");
-        customerScreen();
-        return;
-    }
-    int policyNum = randomPolicyNumber();
-    std::cout << "Your policy number is: " << policyNum << std::endl;
-    newuser.policyNumber = policyNum;
+        switch (userInput)
+        {
+        case '1':
+            newuser.insuranceType = "Third Party";
+            std::cout << "Your chosen policy is: Third Party" << std::endl;
+            break;
+        case '2':
+            newuser.insuranceType = "Fire and Theft";
+            std::cout << "Your chosen policy is: Fire and Theft" << std::endl;
+            break;
+        case '3':
+            newuser.insuranceType = "Comprehensive";
+            std::cout << "Your chosen policy is: Comprehensive" << std::endl;
+            break;
+        case '4':
+            Sleep(500);
+            system("cls");
+            customerScreen();
+            break;
+        default:
+            std::cout << "Invalid input. Please try again." << std::endl;
+            continue;
+        }
+
+        std::cin.ignore(INT_MAX, '\n');
+
+        int policyNum = randomPolicyNumber();
+        std::cout << "Your policy number is: " << policyNum << std::endl;
+        newuser.policyNumber = policyNum;
+
+        std::cout << "Enter your vehicle registration number" << std::endl;
+        std::getline(std::cin, userInputS);
+        newuser.vehicleRego = userInputS;
+
+        std::cout << "Enter your Vehicles Model" << std::endl;
+        std::getline(std::cin, userInputS);
+        newuser.vehicleModel = userInputS;
+
+        std::cout << "Enter your Vehicles Name" << std::endl;
+        std::getline(std::cin, userInputS);
+        newuser.vehicleName = userInputS;
+
+        newuser.currentUser = currentUser;
+        break;  // Exit the loop after processing the user's choice
+    } while (true);
+
+    std::cout << "Thanks for Signing up for your new insurane policy " << currentUser << std::endl;
+    newPolicy(newuser);
+    Sleep(1000);
+    system("cls");
+    customerScreen();
 }
 
 void mainMenu()
@@ -267,6 +300,78 @@ void benefitsMenu()
 
 }
 
+
+void registerClaim()
+{
+    ClaimData newClaim;
+
+    newClaim.currentUser = currentUser;
+    // Prompt the user for claim information
+    std::cout << "Enter your policy number: ";
+    std::cin >> newClaim.policyNumber;
+
+    // Add additional prompts for other claim information (full name, date, time, etc.)
+    std::cin.ignore(); // Clear the newline character from the buffer
+    std::cout << "Enter your full name: ";
+    std::getline(std::cin, newClaim.fullName);
+
+    std::cout << "Enter the date of the incident: ";
+    std::getline(std::cin, newClaim.date);
+
+    std::cout << "Enter the time of the incident: ";
+    std::getline(std::cin, newClaim.time);
+
+    std::cout << "Enter a description of the incident: ";
+    std::getline(std::cin, newClaim.incidentDescription);
+
+    std::cout << "Enter complaint details: ";
+    std::getline(std::cin, newClaim.complaintDetails);
+
+    std::cout << "Enter your contact details: ";
+    std::getline(std::cin, newClaim.contactDetails);
+
+    // Save the claim data to a file
+    saveClaimData(newClaim);
+
+    std::cout << "Claim successfully registered!" << std::endl;
+    Sleep(1000);
+    system("cls");
+    customerScreen();
+}
+
+void renewalScreen()
+{
+    std::cout << "Renewal Process Description:\n";
+    std::cout << "Thank you for choosing to renew your policy with NZ Insurance.\n";
+    std::cout << "Please provide the following information for the renewal:\n";
+
+    RenewalData renewalData;
+    renewalData.currentUser = currentUser;
+
+    std::cout << "Enter your policy number: ";
+    std::cin >> renewalData.policyNumber;
+
+    std::cout << "Enter your full name: ";
+    std::cin.ignore();
+    std::getline(std::cin, renewalData.fullName);
+
+    std::cout << "Enter the new policy name: ";
+    std::getline(std::cin, renewalData.newPolicyName);
+
+    std::cout << "Enter your contact number: ";
+    std::getline(std::cin, renewalData.contactNumber);
+
+    std::cout << "Enter your Visa card number: ";
+    std::getline(std::cin, renewalData.visaCardNumber);
+
+    saveRenewalData(renewalData);
+
+    std::cout << "Renewal information successfully submitted!\n";
+    Sleep(1000);
+    system("cls");
+    customerScreen();
+}
+
 void customerScreen()
 {
     nlohmann::json userInfo = jsonDataFile();
@@ -295,8 +400,14 @@ void customerScreen()
             insurancePolicy();
             return;
         case '2':
+            Sleep(500);
+            system("cls");
+            registerClaim();
             return;
         case '3':
+            Sleep(500);
+            system("cls");
+            renewalScreen();
             return;
         case '4':
             Sleep(500);

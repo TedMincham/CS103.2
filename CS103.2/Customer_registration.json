@@ -1,9 +1,9 @@
 {
     "discount": {
-        "FriendsAndFamily": 15,
-        "MultiPolicy": 20,
-        "NewSignUp": 10,
-        "Renewal": 8
+        "FriendsAndFamily": 1,
+        "MultiPolicy": 15,
+        "NewSignUp": 15,
+        "Renewal": 15
     },
     "user": {
         "1": {
@@ -48,6 +48,17 @@
         "Teddy": {
             "DOB": "01/12/98",
             "address": "106 Marina View Drive",
+            "claims": [
+                {
+                    "ComplaintDetails": "Ted",
+                    "ContactDetails": "106 Marina View",
+                    "Date": "01/02/13",
+                    "FullName": "Teddy",
+                    "IncidentDescription": "Attacked",
+                    "PolicyNum": 18094,
+                    "Time": "1030"
+                }
+            ],
             "contactNumber": "0221344099",
             "email": "tedmincham@gmail.com",
             "firstName": "Ted",
@@ -55,6 +66,24 @@
             "isAdmin": true,
             "lastName": "Mincham",
             "password": "123",
+            "policies": [
+                {
+                    "InsuranceType": "Third Party",
+                    "PolicyNum": 18094,
+                    "VehicleModel": "1",
+                    "VehicleName": "1",
+                    "VehicleRego": "1"
+                }
+            ],
+            "renewals": [
+                {
+                    "ContactNumber": "43252435",
+                    "FullName": "4254325234",
+                    "NewPolicyName": "24352435",
+                    "PolicyNum": 24352435,
+                    "VisaCardNumber": "4252435243"
+                }
+            ],
             "userName": "Teddy",
             "vehicleRego": "EGF647"
         }

@@ -68,6 +68,66 @@ void updateDiscounts()
     adminMenu();
 }
 
+#include <iostream>
+#include <iomanip>
+#include "json.hpp"
+
+void printAllClaims()
+{
+    nlohmann::json jsonData = jsonDataFile();
+
+    if (jsonData.contains("user")) {
+        for (const auto& user : jsonData["user"].items()) {
+            if (user.value().contains("claims")) {
+                std::cout << "User: " << user.key() << std::endl;
+                for (const auto& claim : user.value()["claims"]) {
+                    std::cout << "Policy Number: " << claim["PolicyNum"] << std::endl;
+                    std::cout << "Full Name: " << claim["FullName"] << std::endl;
+                    std::cout << "Date: " << claim["Date"] << std::endl;
+                    std::cout << "Time: " << claim["Time"] << std::endl;
+                    std::cout << "Incident Description: " << claim["IncidentDescription"] << std::endl;
+                    std::cout << "Complaint Details: " << claim["ComplaintDetails"] << std::endl;
+                    std::cout << "Contact Details: " << claim["ContactDetails"] << std::endl;
+                    std::cout << std::string(50, '-') << std::endl;
+                }
+            }
+        }
+    }
+    else {
+        std::cout << "No claims found in the JSON." << std::endl;
+    }
+    system("pause");
+    system("cls");
+    adminMenu();
+}
+
+void printAllRenewals()
+{
+    nlohmann::json jsonData = jsonDataFile();
+
+    if (jsonData.contains("user")) {
+        for (const auto& user : jsonData["user"].items()) {
+            if (user.value().contains("renewals")) {
+                std::cout << "User: " << user.key() << std::endl;
+                for (const auto& renewal : user.value()["renewals"]) {
+                    std::cout << "Policy Number: " << renewal["PolicyNum"] << std::endl;
+                    std::cout << "Full Name: " << renewal["FullName"] << std::endl;
+                    std::cout << "New Policy Name: " << renewal["NewPolicyName"] << std::endl;
+                    std::cout << "Contact Number: " << renewal["ContactNumber"] << std::endl;
+                    std::cout << "Visa Card Number: " << renewal["VisaCardNumber"] << std::endl;
+                    std::cout << std::string(50, '-') << std::endl;
+                }
+            }
+        }
+    }
+    else {
+        std::cout << "No renewals found in the JSON." << std::endl;
+    }
+    system("pause");
+    system("cls");
+    adminMenu();
+}
+
 
 void adminMenu()
 {
@@ -93,10 +153,19 @@ void adminMenu()
             adminCustomerReport();
             return;
         case '2':
+            Sleep(500);
+            system("cls");
+            printAllClaims();
             return;
         case '3':
+            Sleep(500);
+            system("cls");
+            printAllRenewals();
             return;
         case '4':
+            Sleep(500);
+            system("cls");
+            adminCustomerReport();
             return;
         case '5':
             Sleep(500);

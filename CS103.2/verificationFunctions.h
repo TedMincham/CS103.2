@@ -19,7 +19,7 @@ bool validEmail(std::string userEmail)
 {
 	bool valid;
 
-	if (userEmail.find('@') != std::string::npos)
+	if (userEmail.find('@' && '.') != std::string::npos)
 	{
 		valid = true;
 	}
